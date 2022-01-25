@@ -1,7 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
 import Box from '@mui/material/Box';
-import appConfig from '../config.json';
 import ProfileImage from "../components/ProfileImage"
 import Form from "../components/Form"
 
