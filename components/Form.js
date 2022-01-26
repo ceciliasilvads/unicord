@@ -1,25 +1,75 @@
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField'
-import Title from "./Title"
 import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import React from 'react';
+import { useRouter } from 'next/router';
 
-export default function Form(){
-//    const input = document.querySelector("#input-username");
-    //const texto = input.value;
-    //console.log(texto);
+export default function Form() {
+    const [username, setUsername] = React.useState('');
+    const roteamento = useRouter();
     return(
-        <Box 
+        <Box
+            as='form'
+            onSubmit={function (infosDoEvento) {
+                infosDoEvento.preventDefault();
+                console.log('Alguém submeteu o form');
+                roteamento.push('/chat');
+            }}
             sx={{
-                height: '100%',
+                width: '40%',
+                height: '50%',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'space-evenly',
+                display: 'flex',
+                bgcolor: '#deaccf',
+                borderRadius: '30px'
             }}
-        >
-            <Title tag="h2">Seja bem vindo(a)!</Title>
-            <TextField id="input-username" label="Username" variant="filled" focused/>
-            <Button color="secondary" variant="contained" >Procurar</Button>
+
+        >   
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'space-evenly',
+                }}
+            >
+                <Avatar
+                    src={`https://github.com/${username}.png`}
+                    sx={{ width: 160, height: 160 }}
+                />
+                <h3>{username}</h3>
+                <style jsx>{`
+                    h3 {
+                        margin: 10px;
+                        font-size: 18px;
+                        font-family: Monospace;
+                        color: #404040;
+                        
+                    }
+                `}</style>
+            </Box>
+            <TextField
+                label='Github Username'
+                value={username}
+                color="secondary"
+                focused
+                onChange={
+                    function (event) {
+                        console.log('usuario digitou', event.target.value);
+                        // Onde ta o valor?
+                        const valor = event.target.value;
+                        // Trocar o valor da variavel
+                        // através do React e avise quem precisa
+                        setUsername(valor);
+                    }
+                }
+            />
+            <Button type='submit' color='secondary' size='large' variant='contained'>Entrar</Button>
         </Box>
+
     );
 }

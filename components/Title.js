@@ -1,7 +1,5 @@
-import appConfig from '../config.json';
 
 export default function Title(props) {
-    console.log(props.children);
     const Tag = props.tag;
     return (
         <>
@@ -10,7 +8,7 @@ export default function Title(props) {
                 ${Tag} {
                     font-size: 24px;
                     font-family: Monospace;
-                    color: #f2f2f2;
+                    color: #404040;
                 }
             `}</style>
         </>
